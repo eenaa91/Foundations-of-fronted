@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic Table with Sorting</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            cursor: pointer;
+        }
+        tr:hover {
+            background-color: #3a0a0a;
+        }
+        .sort-up::after {
+            content: " ▲";
+        }
+        .sort-down::after {
+            content: " ▼";
+        }
+    </style>
+</head>
+<body>
+
+<button onclick="showModal()">Click</button>
+
+<table id="userTable">
+    <thead>
+        <tr>
+            <th onclick="sortTable(0)">ID<span class="sort-icon"></span></th>
+            <th onclick="sortTable(1)">Name<span class="sort-icon"></span></th>
+            <th onclick="sortTable(2)">Country<span class="sort-icon"></span></th>
+            <th onclick="sortTable(3)">Email<span class="sort-icon"></span></th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+     
+    </tbody>
+</table>
+
+
+<div id="myModal" class="modal">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <p id="modalContent"></p>
+    </div>
+</div>
+
+<script>
+
+    var userData = [
+        { id: 1, name: "John Doe", country: "USA", email: "john@example.com" },
+        { id: 2, name: "Jane Smith", country: "Canada", email: "jane@example.com" },
+        { id: 3, name: "Jim Brown", country: "UK", email: "jim@example.com" },
+        { id: 3, name: "Jake White", country: "UK", email: "jake@example.com" },
+        { id: 4, name: "Julie Black", country: "UK", email: "julie@example.com" },
+        { id: 5, name: "Jennifer Green", country: "UK", email: "jennifer@example.com" }
+    ];
+
+    function generateTableRows(data) {
+        var tbody = document.querySelector("#userTable tbody");
+        tbody.innerHTML = "";
+        data.forEach(function(user) {
+            var row = `<tr>
+                <td>${user.id}</td>
+                <td>${user.name}</td>
+                <td>${user.country}</td>
+                <td>${user.email}</td>
+                <td><button onclick="showModal(${user.id}, '${user.name}')">Click</button></td>
+            </tr>`;
+            tbody.innerHTML += row;
+        });
+    }
+
+    function showModal(id, name) {
+        var modal = document.getElementById("myModal");
+        var modalContent = document.getElementById("modalContent");
+        modalContent.innerHTML = "You clicked on the user: " + name;
+        modal.style.display = "block";
+    }
+
+   
+    document.querySelector(".close").addEventListener("click", function() {
+        document.getElementById("myModal").style.display = "none";
+    });
+
+
+    function sortTable(columnIndex) {
+        var asc = true;
+        var table, rows, switching, i, x, y, shouldSwitch;
+        table = document.getElementById("userTable");
+        switching = true;
+        while (switching) {
+            switching = false;
+            rows = table.rows;
+            for (i = 1; i < (rows.length - 1); i++) {
+                shouldSwitch = false;
+                x = rows[i].getElementsByTagName("td")[columnIndex];
+                y = rows[i + 1].getElementsByTagName("td")[columnIndex];
+                if (asc) {
+                    if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+                        shouldSwitch = true;
+                        break;
+                    }
+                } else {
+                    if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
+                        shouldSwitch = true;
+                        break;
+                    }
+                }
+            }
+            if (shouldSwitch) {
+                rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+                switching = true;
+            }
+        }
+        asc = !asc;
+        updateSortIcon(columnIndex, asc);
+    }
+
+
+    function updateSortIcon(columnIndex, asc) {
+        var sortIcons = document.querySelectorAll(".sort-icon");
+        sortIcons.forEach(function(icon) {
+            icon.classList.remove("sort-up", "sort-down");
+        });
+        var currentIcon = document.querySelectorAll(".sort-icon")[columnIndex];
+        if (asc) {
+            currentIcon.classList.add("sort-up");
+        } else {
+            currentIcon.classList.add("sort-down");
+        }
+    }
+
+    generateTableRows(userData);
+</script>
+
+</body>
+</html>
