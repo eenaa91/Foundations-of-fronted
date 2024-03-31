@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial;
+  padding: 10px;
+  background: #f1f1f1;
+}
+
+/* Header/Blog Title */
+.header {
+  padding: 30px;
+  text-align: center;
+  background: rgb(240, 215, 241);
+}
+
+.header h1 {
+  font-size: 50px;
+}
+
+/* Style the top navigation bar */
+.topnav {
+  overflow: hidden;
+  background-color: #f8d1f6;
+}
+
+/* Style the topnav links */
+.topnav a {
+  float: left;
+  display: block;
+  color: #9c0a78;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+/* Change color on hover */
+.topnav a:hover {
+  background-color: #ce59a7;
+  color: black;
+}
+
+/* Create two unequal columns that floats next to each other */
+/* Left column */
+.leftcolumn {   
+  float: left;
+  width: 75%;
+}
+
+/* Right column */
+.rightcolumn {
+  float: left;
+  width: 25%;
+  background-color: #ffffff;
+  padding-left: 20px;
+}
+
+.img {
+  background-color: #ffffff;
+  width: 100%;
+  padding: 20px;
+}
+
+/* Add a card effect for articles */
+.card {
+  background-color: rgb(247, 220, 253);
+  padding: 20px;
+  margin-top: 20px;
+}
+
+/* Clear floats after the columns */
+.row::after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+
+.footer {
+  padding: 20px;
+  text-align: center;
+  background: #f1bcd7;
+  margin-top: 20px;
+}
+
+
+@media screen and (max-width: 800px) {
+  .leftcolumn, .rightcolumn {   
+    width: 100%;
+    padding: 0;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .topnav a {
+    float: none;
+    width: 100%;
+  }
+}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>Ena Boutique</h1>
+</div>
+
+<div class="topnav">
+  <a href="#">Home</a>
+  <a href="#">About us<U></U></a>
+  <a href="#">Clothing</a>
+  <a href="#">New In</a>
+  <a href="#" style="float:right">Link</a>
+</div>
+
+<div class="row">
+  <div class="leftcolumn">
+    <div class="card">
+      <h2>Ena Boutique</h2>
+      <h5> Discover a carefully selected collection of clothing, accessories, and lifestyle products that blend trendsetting designs with timeless elegance.</h5>
+      <img src="slika3.jpg" style="width:200px;height:200px;">
+
+      <p>For celebrity inspired glam women’s fashion, look no further than Ena Boutique to keep your wardrobe looking on fleek all day every day. We’re dropping new clothes daily so whether you’re shopping for the perfect party dress or must-have jumpsuit, we’ve got you covered with the latest affordable clothing for women.
+
+        Make sure your outfits are looking on point with shoes, accessories and more so you’re always killing it no matter what the occasion. When you’re looking for a bargain, check out our slayin’ sale for unmissable discount styles before it’s too late. Nail all the new season trends and shop Ena Boutique for the hottest women’s clothing online with UK Next Day Delivery.</p>
+    </div>
+    <div class="card">
+      <h2>NEW COLLECTION</h2>
+      <h5>2024 limited edition</h5>
+      <img src="slika.webp"style="width:200px;height:200px;">
+      <p>Shop now</p>
+      <p>Explore our 2024 limited edition collection online or visit our boutique to experience the luxury firsthand. Elevate your wardrobe with our exclusive pieces and indulge in the ultimate expression of style and sophistication.</p>
+    </div>
+  </div>
+  <div class="rightcolumn">
+    <div class="card">
+      <h2>Visit Us</h2>
+      <p>Our boutique is a destination for fashion lovers from near and far. Step into our stylish space and immerse yourself in the world of fashion as you discover our curated collections and find your next favorite piece.</p>
+    </div>
+    <div class="card">
+      <h3>Popular Post</h3>
+      <img src="slika2.jpg"style="width:200px;height:200px;">
+ 
+    </div>
+    <div class="card">
+      <h3>Contact Us</h3>
+      <p>ena.boutique@gmail.com</p>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
+
+<section id="contact" class="add-padding border-top-color2">
+		
+    <div class="container text-center">
+        
+        <div class="row">
+        
+            <div class="col-sm-6 col-md-5 text-right scrollimation fade-up d1">
+            
+                <h1 class="big-text">Contact Us</h1>
+                
+                <p class="lead">Welcome to Boutique, your one-stop destination for fashion and style. We offer a curated collection of trendy clothing, accessories, and more to help you express your unique style and personality. From casual everyday wear to chic statement pieces, we've got you covered.<br></p>
+
+            
+            </div>
+        
+         
+
+            <form id="contact-form" class="col-sm-6 col-md-offset-1 scrollimation fade-left d3" action="contact.php" method="post" novalidate>
+                
+                <div class="form-group">
+                  <label class="control-label" for="contact-name">Name</label>
+                  <div class="controls">
+                    <input id="contact-name" name="contactName" placeholder="Your name" class="form-control requiredField" data-new-placeholder="Your name" type="text" data-error-empty="Please enter your name">
+                    <i class="fa fa-user"></i>
+                  </div>
+                </div>
+                
+                <div class="form-group">
+                  <label class="control-label" for="contact-mail">Email</label>
+                  <div class=" controls">
+                    <input id="contact-mail" name="email" placeholder="Your email" class="form-control requiredField" data-new-placeholder="Your email" type="email" data-error-empty="Please enter your email" data-error-invalid="Invalid email address">
+                    <i class="fa fa-envelope"></i>
+                  </div>
+                </div>
+                
+                <div class="form-group">
+                  <label class="control-label" for="contact-message">Message</label>
+                    <div class="controls">
+                        <textarea id="contact-message" name="comments"  placeholder="Your message" class="form-control requiredField" data-new-placeholder="Your message" rows="6" data-error-empty="Please enter your message"></textarea>
+                        <i class="fa fa-comment"></i>
+                    </div>
+                </div>
+                
+                <p><button name="submit" type="submit" class="btn btn-color2 btn-block" data-error-message="Error!" data-sending-message="Sending..." data-ok-message="Message Sent"><i class="fa fa-paper-plane"></i>Send Message</button></p>
+                <input type="hidden" name="submitted" id="submitted" value="true" />
+                
+            </form>
+            
+        </div>
+        
+    </div>
+
+</section>
+
+
+<footer id="main-footer" class="add-padding border-top-color2">
+
+    <div class="container">
+    
+        <ul class="social-links text-center">
+            <li><a href="https://twitter.com/korenlc" target="_blank"><i class="fa fa-twitter fa-fw"></i></a></li>
+            <li><a href="https://plus.google.com/u/0/+KLCohen/posts/p/pub" target="_blank"><i class="fa fa-google-plus fa-fw"></i></a></li>
+            <li><a href="https://www.linkedin.com/in/korenlesliecohen" target="_blank"><i class="fa fa-linkedin fa-fw"></i></a></li>
+        </ul>
+    
+    
+    </div>
+    
+</footer>
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Button Animations</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<button class="btn">Hover Me</button>
+
+<script src="script.js"></script>
+</body>
+</html>
+
+
