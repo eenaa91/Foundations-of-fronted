@@ -244,3 +244,116 @@ body {
 </body>
 </html>
 
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ena Boutique</title>
+    <style>
+        /* Your existing CSS styles here */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.9);
+        }
+        .modal-content {
+            margin: auto;
+            display: block;
+            width: 80%;
+            max-width: 700px;
+            max-height: 80%;
+        }
+        .modal-img {
+            width: 100%;
+            height: auto;
+        }
+        .close {
+            position: absolute;
+            top: 10px;
+            right: 25px;
+            color: white;
+            font-size: 35px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        .close:hover {
+            color: #ccc;
+        }
+
+        /* Adjust thumbnail size */
+        .gallery img {
+            width: 100px; /* Adjust as needed */
+            height: auto;
+            margin: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+
+<div class="row">
+  <div class="leftcolumn">
+    <!-- Thumbnail Images -->
+    <div class="card">
+      <h2>Image Gallery</h2>
+      <div class="gallery">
+        <img src="picture.webp" alt="Thumbnail 1" onclick="openModal('modal1', 'larger1.jpg')">
+        <img src="picture2.avif" alt="Thumbnail 2" onclick="openModal('modal2', 'larger2.jpg')">
+        <!-- Add more thumbnail images as needed -->
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal Windows -->
+<div id="modal1" class="modal">
+  <span class="close" onclick="closeModal('modal1')">&times;</span>
+  <img class="modal-content modal-img" src="" alt="Modal Image 1">
+</div>
+
+<div id="modal2" class="modal">
+  <span class="close" onclick="closeModal('modal2')">&times;</span>
+  <img class="modal-content modal-img" src="" alt="Modal Image 2">
+</div>
+
+<script>
+    // JavaScript Functions for Gallery
+    function openModal(modalId, imgUrl) {
+        var modal = document.getElementById(modalId);
+        var img = modal.querySelector('.modal-content.modal-img');
+        img.src = imgUrl;
+        modal.style.display = "block";
+    }
+
+    function closeModal(modalId) {
+        var modal = document.getElementById(modalId);
+        modal.style.display = "none";
+    }
+</script>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
