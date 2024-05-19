@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,14 +10,15 @@
 body {
   font-family: Arial;
   padding: 10px;
-  background: #f1f1f1;
+  background: var(--background-color, #f1f1f1);
+  color: var(--text-color, #000);
 }
 
 /* Header/Blog Title */
 .header {
   padding: 30px;
   text-align: center;
-  background: rgb(240, 215, 241);
+  background: var(--header-background-color, rgb(240, 215, 241));
 }
 
 .header h1 {
@@ -26,14 +28,14 @@ body {
 /* Style the top navigation bar */
 .topnav {
   overflow: hidden;
-  background-color: #f8d1f6;
+  background-color: var(--nav-background-color, #f8d1f6);
 }
 
 /* Style the topnav links */
 .topnav a {
   float: left;
   display: block;
-  color: #9c0a78;
+  color: var(--nav-link-color, #9c0a78);
   text-align: center;
   padding: 14px 16px;
   text-decoration: none;
@@ -41,7 +43,7 @@ body {
 
 /* Change color on hover */
 .topnav a:hover {
-  background-color: #ce59a7;
+  background-color: var(--nav-link-hover-color, #ce59a7);
   color: black;
 }
 
@@ -68,7 +70,7 @@ body {
 
 /* Add a card effect for articles */
 .card {
-  background-color: rgb(247, 220, 253);
+  background-color: var(--card-background-color, rgb(247, 220, 253));
   padding: 20px;
   margin-top: 20px;
 }
@@ -80,14 +82,12 @@ body {
   clear: both;
 }
 
-
 .footer {
   padding: 20px;
   text-align: center;
-  background: #f1bcd7;
+  background: var(--footer-background-color, #f1bcd7);
   margin-top: 20px;
 }
-
 
 @media screen and (max-width: 800px) {
   .leftcolumn, .rightcolumn {   
@@ -102,6 +102,34 @@ body {
     width: 100%;
   }
 }
+
+.hidden-content {
+  display: none;
+}
+
+.toggle-button {
+  background-color: #9c0a78;
+  color: white;
+  padding: 10px;
+  border: none;
+  cursor: pointer;
+  margin: 10px 0;
+}
+
+.toggle-button:hover {
+  background-color: #ce59a7;
+}
+
+.theme-switcher {
+  margin: 20px 0;
+  text-align: center;
+}
+
+.theme-switcher button {
+  padding: 10px;
+  margin: 5px;
+  cursor: pointer;
+}
 </style>
 </head>
 <body>
@@ -112,22 +140,31 @@ body {
 
 <div class="topnav">
   <a href="#">Home</a>
-  <a href="#">About us<U></U></a>
+  <a href="#">About us</a>
   <a href="#">Clothing</a>
   <a href="#">New In</a>
   <a href="#" style="float:right">Link</a>
+</div>
+
+<div class="theme-switcher">
+  <button onclick="setTheme('default')">Default Theme</button>
+  <button onclick="setTheme('dark')">Dark Theme</button>
+  <button onclick="setTheme('light')">Light Theme</button>
 </div>
 
 <div class="row">
   <div class="leftcolumn">
     <div class="card">
       <h2>Ena Boutique</h2>
-      <h5> Discover a carefully selected collection of clothing, accessories, and lifestyle products that blend trendsetting designs with timeless elegance.</h5>
+      <h5>Discover a carefully selected collection of clothing, accessories, and lifestyle products that blend trendsetting designs with timeless elegance.</h5>
       <img src="slika3.jpg" style="width:200px;height:200px;">
-
       <p>For celebrity inspired glam women’s fashion, look no further than Ena Boutique to keep your wardrobe looking on fleek all day every day. We’re dropping new clothes daily so whether you’re shopping for the perfect party dress or must-have jumpsuit, we’ve got you covered with the latest affordable clothing for women.
 
         Make sure your outfits are looking on point with shoes, accessories and more so you’re always killing it no matter what the occasion. When you’re looking for a bargain, check out our slayin’ sale for unmissable discount styles before it’s too late. Nail all the new season trends and shop Ena Boutique for the hottest women’s clothing online with UK Next Day Delivery.</p>
+      <button class="toggle-button" onclick="toggleContent('boutiqueDetails')">Read More</button>
+      <div id="boutiqueDetails" class="hidden-content">
+        <p>Our collection features unique pieces that are crafted with the finest materials. From luxurious fabrics to intricate detailing, each item is designed to make you feel confident and stylish. Our seasonal collections are inspired by global trends and the latest fashion movements, ensuring you stay ahead of the curve.</p>
+      </div>
     </div>
     <div class="card">
       <h2>NEW COLLECTION</h2>
@@ -135,210 +172,167 @@ body {
       <img src="slika.webp"style="width:200px;height:200px;">
       <p>Shop now</p>
       <p>Explore our 2024 limited edition collection online or visit our boutique to experience the luxury firsthand. Elevate your wardrobe with our exclusive pieces and indulge in the ultimate expression of style and sophistication.</p>
+      <button class="toggle-button" onclick="toggleContent('collectionDetails')">Read More</button>
+      <div id="collectionDetails" class="hidden-content">
+        <p>Our 2024 collection includes a variety of styles from elegant evening dresses to chic casual wear. Each piece is designed with attention to detail and a commitment to quality. Visit our boutique for a personalized shopping experience and expert fashion advice.</p>
+      </div>
     </div>
   </div>
   <div class="rightcolumn">
     <div class="card">
       <h2>Visit Us</h2>
       <p>Our boutique is a destination for fashion lovers from near and far. Step into our stylish space and immerse yourself in the world of fashion as you discover our curated collections and find your next favorite piece.</p>
+      <button class="toggle-button" onclick="toggleContent('visitUsDetails')">Read More</button>
+      <div id="visitUsDetails" class="hidden-content">
+        <p>Located in the heart of the city, our boutique offers a unique shopping experience with personalized service and a welcoming atmosphere. Whether you're looking for a special occasion outfit or everyday essentials, our team is here to help you find the perfect look.</p>
+      </div>
     </div>
     <div class="card">
       <h3>Popular Post</h3>
       <img src="slika2.jpg"style="width:200px;height:200px;">
- 
     </div>
     <div class="card">
       <h3>Contact Us</h3>
       <p>ena.boutique@gmail.com</p>
-    </div>
-  </div>
-</div>
-
-</body>
-</html>
-
-<section id="contact" class="add-padding border-top-color2">
-		
-    <div class="container text-center">
-        
-        <div class="row">
-        
-            <div class="col-sm-6 col-md-5 text-right scrollimation fade-up d1">
-            
-                <h1 class="big-text">Contact Us</h1>
-                
-                <p class="lead">Welcome to Boutique, your one-stop destination for fashion and style. We offer a curated collection of trendy clothing, accessories, and more to help you express your unique style and personality. From casual everyday wear to chic statement pieces, we've got you covered.<br></p>
-
-            
-            </div>
-        
-         
-
-            <form id="contact-form" class="col-sm-6 col-md-offset-1 scrollimation fade-left d3" action="contact.php" method="post" novalidate>
-                
-                <div class="form-group">
-                  <label class="control-label" for="contact-name">Name</label>
-                  <div class="controls">
-                    <input id="contact-name" name="contactName" placeholder="Your name" class="form-control requiredField" data-new-placeholder="Your name" type="text" data-error-empty="Please enter your name">
-                    <i class="fa fa-user"></i>
-                  </div>
-                </div>
-                
-                <div class="form-group">
-                  <label class="control-label" for="contact-mail">Email</label>
-                  <div class=" controls">
-                    <input id="contact-mail" name="email" placeholder="Your email" class="form-control requiredField" data-new-placeholder="Your email" type="email" data-error-empty="Please enter your email" data-error-invalid="Invalid email address">
-                    <i class="fa fa-envelope"></i>
-                  </div>
-                </div>
-                
-                <div class="form-group">
-                  <label class="control-label" for="contact-message">Message</label>
-                    <div class="controls">
-                        <textarea id="contact-message" name="comments"  placeholder="Your message" class="form-control requiredField" data-new-placeholder="Your message" rows="6" data-error-empty="Please enter your message"></textarea>
-                        <i class="fa fa-comment"></i>
-                    </div>
-                </div>
-                
-                <p><button name="submit" type="submit" class="btn btn-color2 btn-block" data-error-message="Error!" data-sending-message="Sending..." data-ok-message="Message Sent"><i class="fa fa-paper-plane"></i>Send Message</button></p>
-                <input type="hidden" name="submitted" id="submitted" value="true" />
-                
-            </form>
-            
-        </div>
-        
-    </div>
-
-</section>
-
-
-<footer id="main-footer" class="add-padding border-top-color2">
-
-    <div class="container">
-    
-        <ul class="social-links text-center">
-            <li><a href="https://twitter.com/korenlc" target="_blank"><i class="fa fa-twitter fa-fw"></i></a></li>
-            <li><a href="https://plus.google.com/u/0/+KLCohen/posts/p/pub" target="_blank"><i class="fa fa-google-plus fa-fw"></i></a></li>
-            <li><a href="https://www.linkedin.com/in/korenlesliecohen" target="_blank"><i class="fa fa-linkedin fa-fw"></i></a></li>
-        </ul>
-    
-    
-    </div>
-    
-</footer>
-
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Button Animations</title>
-    <link rel="stylesheet" href="styles.css">
-</head>
-<body>
-
-<button class="btn">Hover Me</button>
-
-<script src="script.js"></script>
-</body>
-</html>
-
-
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ena Boutique</title>
-    <style>
-        /* Your existing CSS styles here */
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 1;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            overflow: auto;
-            background-color: rgba(0,0,0,0.9);
-        }
-        .modal-content {
-            margin: auto;
-            display: block;
-            width: 80%;
-            max-width: 700px;
-            max-height: 80%;
-        }
-        .modal-img {
-            width: 100%;
-            height: auto;
-        }
-        .close {
-            position: absolute;
-            top: 10px;
-            right: 25px;
-            color: white;
-            font-size: 35px;
-            font-weight: bold;
-            cursor: pointer;
-        }
-        .close:hover {
-            color: #ccc;
-        }
-
-        /* Adjust thumbnail size */
-        .gallery img {
-            width: 100px; /* Adjust as needed */
-            height: auto;
-            margin: 5px;
-            cursor: pointer;
-        }
-    </style>
-</head>
-<body>
-
-
-<div class="row">
-  <div class="leftcolumn">
-    <!-- Thumbnail Images -->
-    <div class="card">
-      <h2>Image Gallery</h2>
-      <div class="gallery">
-        <img src="picture.webp" alt="Thumbnail 1" onclick="openModal('modal1', 'larger1.jpg')">
-        <img src="picture2.avif" alt="Thumbnail 2" onclick="openModal('modal2', 'larger2.jpg')">
-        <!-- Add more thumbnail images as needed -->
+      <button class="toggle-button" onclick="toggleContent('contactDetails')">More Contact Info</button>
+      <div id="contactDetails" class="hidden-content">
+        <p>Phone: (123) 456-7890</p>
+        <p>Address: 123 Fashion St, London, UK</p>
       </div>
     </div>
   </div>
 </div>
 
-<!-- Modal Windows -->
-<div id="modal1" class="modal">
-  <span class="close" onclick="closeModal('modal1')">&times;</span>
-  <img class="modal-content modal-img" src="" alt="Modal Image 1">
+<script>
+function toggleContent(id) {
+  var content = document.getElementById(id);
+  if (content.style.display === "none" || content.style.display === "") {
+    content.style.display = "block";
+  } else {
+    content.style.display = "none";
+  }
+}
+
+function setTheme(theme) {
+  if (theme === 'dark') {
+    document.documentElement.style.setProperty('--background-color', '#121212');
+    document.documentElement.style.setProperty('--text-color', '#ffffff');
+    document.documentElement.style.setProperty('--header-background-color', '#333333');
+    document.documentElement.style.setProperty('--nav-background-color', '#444444');
+    document.documentElement.style.setProperty('--nav-link-color', '#bbbbbb');
+    document.documentElement.style.setProperty('--nav-link-hover-color', '#888888');
+    document.documentElement.style.setProperty('--card-background-color', '#333333');
+    document.documentElement.style.setProperty('--footer-background-color', '#222222');
+  } else if (theme === 'light') {
+    document.documentElement.style.setProperty('--background-color', '#ffffff');
+    document.documentElement.style.setProperty('--text-color', '#000000');
+    document.documentElement.style.setProperty('--header-background-color', '#f1f1f1');
+    document.documentElement.style.setProperty('--nav-background-color', '#e1e1e1');
+    document.documentElement.style.setProperty('--nav-link-color', '#000000');
+    document.documentElement.style.setProperty('--nav-link-hover-color', '#555555');
+    document.documentElement.style.setProperty('--card-background-color', '#f9f9f9');
+    document.documentElement.style.setProperty('--footer-background-color', '#e1e1e1');
+  } else {
+    document.documentElement.style.setProperty('--background-color', '#f1f1f1');
+    document.documentElement.style.setProperty('--text-color', '#000000');
+    document.documentElement.style.setProperty('--header-background-color', 'rgb(240, 215, 241)');
+    document.documentElement.style.setProperty('--nav-background-color', '#f8d1f6');
+    document.documentElement.style.setProperty('--nav-link-color', '#9c0a78');
+    document.documentElement.style.setProperty('--nav-link-hover-color', '#ce59a7');
+    document.documentElement.style.setProperty('--card-background-color', 'rgb(247, 220, 253)');
+    document.documentElement.style.setProperty('--footer-background-color', '#f1bcd7');
+  }
+}
+</script>
+
+</body>
+</html>
+
+
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+body {
+  font-family: Arial, sans-serif;
+  background: #f1f1f1;
+  padding: 20px;
+}
+
+/* Accordion styles */
+.accordion {
+  background-color: #eee;
+  color: #444;
+  cursor: pointer;
+  padding: 18px;
+  width: 100%;
+  border: none;
+  text-align: left;
+  outline: none;
+  font-size: 15px;
+  transition: 0.4s;
+  margin-bottom: 10px;
+}
+
+.active, .accordion:hover {
+  background-color: #ccc;
+}
+
+.panel {
+  padding: 0 18px;
+  background-color: white;
+  display: none;
+  overflow: hidden;
+  margin-bottom: 10px;
+}
+</style>
+</head>
+<body>
+
+<h2>Frequently Asked Questions</h2>
+
+<button class="accordion">What is your return policy?</button>
+<div class="panel">
+  <p>We offer a 30-day return policy. Items must be returned in their original condition with all tags attached. Please visit our Returns page for more details.</p>
 </div>
 
-<div id="modal2" class="modal">
-  <span class="close" onclick="closeModal('modal2')">&times;</span>
-  <img class="modal-content modal-img" src="" alt="Modal Image 2">
+<button class="accordion">How do I track my order?</button>
+<div class="panel">
+  <p>You can track your order using the tracking number provided in your shipping confirmation email. Visit our Order Tracking page and enter the tracking number to see the status of your order.</p>
+</div>
+
+<button class="accordion">Do you ship internationally?</button>
+<div class="panel">
+  <p>Yes, we ship to most countries worldwide. Shipping fees and delivery times vary depending on the destination. Please visit our Shipping Information page for more details.</p>
+</div>
+
+<button class="accordion">What payment methods do you accept?</button>
+<div class="panel">
+  <p>We accept various payment methods including credit/debit cards, PayPal, and Apple Pay. For a full list of accepted payment methods, please visit our Payment Information page.</p>
+</div>
+
+<button class="accordion">Can I change or cancel my order?</button>
+<div class="panel">
+  <p>You can change or cancel your order within 24 hours of placing it. Please contact our customer service team as soon as possible to make any changes. After 24 hours, we cannot guarantee modifications or cancellations.</p>
 </div>
 
 <script>
-    // JavaScript Functions for Gallery
-    function openModal(modalId, imgUrl) {
-        var modal = document.getElementById(modalId);
-        var img = modal.querySelector('.modal-content.modal-img');
-        img.src = imgUrl;
-        modal.style.display = "block";
-    }
+document.addEventListener("DOMContentLoaded", function() {
+  var acc = document.getElementsByClassName("accordion");
+  var i;
 
-    function closeModal(modalId) {
-        var modal = document.getElementById(modalId);
-        modal.style.display = "none";
-    }
+  for (i = 0; i < acc.length; i++) {
+    acc[i].addEventListener("click", function() {
+      this.classList.toggle("active");
+      var panel = this.nextElementSibling;
+      if (panel.style.display === "block") {
+        panel.style.display = "none";
+      } else {
+        panel.style.display = "block";
+      }
+    });
+  }
+});
 </script>
 
 </body>
@@ -346,14 +340,200 @@ body {
 
 
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advanced Contact Form</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f1f1f1;
+            padding: 20px;
+        }
 
+        .form-group {
+            margin-bottom: 15px;
+        }
 
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
 
+        input, textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 5px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
 
+        .error {
+            color: red;
+            font-size: 0.9em;
+        }
 
+        .strength-meter {
+            height: 10px;
+            width: 100%;
+            background: #ccc;
+            border-radius: 5px;
+            margin-top: 5px;
+        }
 
+        .strength-meter div {
+            height: 100%;
+            width: 0;
+            border-radius: 5px;
+            transition: width 0.3s;
+        }
 
+        .strength-weak {
+            background: red;
+            width: 25%;
+        }
 
+        .strength-medium {
+            background: orange;
+            width: 50%;
+        }
 
+        .strength-strong {
+            background: yellow;
+            width: 75%;
+        }
+
+        .strength-very-strong {
+            background: green;
+            width: 100%;
+        }
+
+        .success-message {
+            color: green;
+        }
+    </style>
+</head>
+<body>
+
+<h2>Contact Us</h2>
+
+<form id="contact-form">
+    <div class="form-group">
+        <label for="contact-name">Name</label>
+        <input id="contact-name" name="contactName" type="text" class="required">
+    </div>
+
+    <div class="form-group">
+        <label for="contact-email">Email</label>
+        <input id="contact-email" name="contactEmail" type="email" class="required">
+    </div>
+
+    <div class="form-group">
+        <label for="contact-date">Preferred Contact Date</label>
+        <input id="contact-date" name="contactDate" type="text" class="required">
+    </div>
+
+    <div class="form-group">
+        <label for="contact-password">Password</label>
+        <input id="contact-password" name="contactPassword" type="password" class="required">
+        <div class="strength-meter"><div></div></div>
+    </div>
+
+    <div class="form-group">
+        <label for="contact-message">Message</label>
+        <textarea id="contact-message" name="contactMessage" rows="4" class="required"></textarea>
+    </div>
+
+    <button type="submit">Submit</button>
+</form>
+
+<div id="success-message" class="success-message" style="display:none;">Your message has been sent successfully!</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+<script src="https://cdn.jsdelivr.net/jquery.validation/1.19.3/jquery.validate.min.js"></script>
+<script>
+$(function() {
+    // Initialize date picker
+    $("#contact-date").datepicker();
+
+    // Password strength indicator
+    $("#contact-password").on("input", function() {
+        var value = $(this).val();
+        var strengthMeter = $(".strength-meter div");
+        var strength = 0;
+
+        if (value.length >= 8) strength++;
+        if (value.match(/[a-z]/)) strength++;
+        if (value.match(/[A-Z]/)) strength++;
+        if (value.match(/[0-9]/)) strength++;
+        if (value.match(/[@$!%*?&#]/)) strength++;
+
+        strengthMeter.removeClass();
+        if (strength == 1) strengthMeter.addClass("strength-weak");
+        if (strength == 2) strengthMeter.addClass("strength-medium");
+        if (strength == 3) strengthMeter.addClass("strength-strong");
+        if (strength >= 4) strengthMeter.addClass("strength-very-strong");
+    });
+
+    // Form validation
+    $("#contact-form").validate({
+        rules: {
+            contactName: {
+                required: true,
+                minlength: 2
+            },
+            contactEmail: {
+                required: true,
+                email: true
+            },
+            contactDate: {
+                required: true,
+                date: true
+            },
+            contactPassword: {
+                required: true,
+                minlength: 8
+            },
+            contactMessage: {
+                required: true,
+                minlength: 10
+            }
+        },
+        messages: {
+            contactName: {
+                required: "Please enter your name",
+                minlength: "Your name must consist of at least 2 characters"
+            },
+            contactEmail: {
+                required: "Please enter your email address",
+                email: "Please enter a valid email address"
+            },
+            contactDate: {
+                required: "Please select a preferred contact date"
+            },
+            contactPassword: {
+                required: "Please provide a password",
+                minlength: "Your password must be at least 8 characters long"
+            },
+            contactMessage: {
+                required: "Please enter your message",
+                minlength: "Your message must be at least 10 characters long"
+            }
+        },
+        submitHandler: function(form) {
+            // Simulate successful form submission
+            $("#success-message").show();
+            form.reset();
+        }
+    });
+});
+</script>
+
+</body>
+</html>
 
 
