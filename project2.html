@@ -536,31 +536,131 @@ $(function() {
 </html>
 
 
+
+
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Product Listings</title>
-  <style>
-    .product {
-      border: 1px solid #ccc;
-      padding: 20px;
-      margin: 10px;
-      text-align: center;
-    }
-    .product img {
-      width: 100px;
-      height: 100px;
-    }
-    .product-buttons {
-      margin-top: 10px;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Form</title>
+    <!-- Include jQuery library -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- Include jQuery Validation plugin -->
+    <script src="https://cdn.jsdelivr.net/jquery.validation/1.19.3/jquery.validate.min.js"></script>
+    <!-- Include jQuery UI for date picker -->
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <style>
+        .error {
+            color: red;
+        }
+        .valid {
+            color: green;
+        }
+    </style>
 </head>
 <body>
-  <main id="product_list">
-    <!-- Product listings will be loaded here -->
-  </main>
+    <form id="contactForm">
+        <label for="name">Name</label>
+        <input type="text" id="name" name="name" required>
+        <br>
 
-  <script src="custom.js"></script>
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" required>
+        <br>
+
+        <label for="date">Date</label>
+        <input type="text" id="date" name="date" required>
+        <br>
+
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password" required>
+        <div id="password-strength"></div>
+        <br>
+
+        <label for="confirm_password">Confirm Password</label>
+        <input type="password" id="confirm_password" name="confirm_password" required>
+        <br>
+
+        <button type="submit">Submit</button>
+    </form>
+
+    <script>
+        $(document).ready(function() {
+            // Datepicker for the date field
+            $("#date").datepicker({
+                dateFormat: "mm/dd/yy"
+            });
+
+            // Password strength indicator
+            $('#password').on('keyup', function() {
+                var password = $(this).val();
+                var strength = 'Weak';
+                if (password.length > 7 && /[A-Z]/.test(password) && /[0-9]/.test(password)) {
+                    strength = 'Strong';
+                } else if (password.length > 5) {
+                    strength = 'Medium';
+                }
+                $('#password-strength').text('Password Strength: ' + strength);
+            });
+
+            // jQuery Validation for the form
+            $("#contactForm").validate({
+                rules: {
+                    name: {
+                        required: true,
+                        minlength: 2
+                    },
+                    email: {
+                        required: true,
+                        email: true
+                    },
+                    date: {
+                        required: true,
+                        date: true
+                    },
+                    password: {
+                        required: true,
+                        minlength: 8,
+                        pwcheck: true
+                    },
+                    confirm_password: {
+                        required: true,
+                        equalTo: "#password"
+                    }
+                },
+                messages: {
+                    name: {
+                        required: "Please enter your name",
+                        minlength: "Your name must consist of at least 2 characters"
+                    },
+                    email: {
+                        required: "Please enter your email",
+                        email: "Please enter a valid email address"
+                    },
+                    date: {
+                        required: "Please enter a date",
+                        date: "Please enter a valid date"
+                    },
+                    password: {
+                        required: "Please provide a password",
+                        minlength: "Your password must be at least 8 characters long",
+                        pwcheck: "Password must contain at least one uppercase letter and one number"
+                    },
+                    confirm_password: {
+                        required: "Please confirm your password",
+                        equalTo: "Passwords do not match"
+                    }
+                }
+            });
+
+            // Custom validation method for password
+            $.validator.addMethod("pwcheck", function(value) {
+                return /[A-Z]/.test(value) && /[0-9]/.test(value);
+            });
+        });
+    </script>
 </body>
 </html>
+
